@@ -7,40 +7,37 @@ using namespace std;
 mutex mtxA;
 mutex mtxB;
 
-void func1(int a,int b){
-   a=a+1;
+void func1(){
+ 
    cout<<"Accessing resource A - thread 1 "<<endl;
    mtxA.lock();
-
-   this_thread::sleep_for(chrono::seconds(1000));
-   int sum = a+b;
+   cout<<"Acquired resource A- thread 1"<<endl;
+   this_thread::sleep_for(chrono::seconds(1));
    cout<<"Accessing resource B - thread 1"<<endl;
    mtxB.lock();
-
-   this_thread::sleep_for(chrono::seconds(1000));
+   cout<<"Acquired resource B- thread 1"<<endl;
+   this_thread::sleep_for(chrono::seconds(1));
    mtxB.unlock();
    mtxA.unlock();
 }
 
-void func2(int a,int b){
-    b=b+1;
+void func2(){
+  
     cout<<"Accessing resource B - thread 2"<<endl;
     mtxB.lock();
-
-    this_thread::sleep_for(chrono::seconds(1000));
-    int sum=a+b;
+    cout<<"Acquired resource B- thread 2"<<endl;
+    this_thread::sleep_for(chrono::seconds(1));
     cout<<"Accessing resource A - thread 2"<<endl;
     mtxA.lock();
-
-    this_thread::sleep_for(chrono::seconds(1000));
+    cout<<"Acquired resource A- thread 2"<<endl;
+    this_thread::sleep_for(chrono::seconds(1));
     mtxA.unlock();
     mtxB.unlock();
 }
 
 int main(){
-    int a=10, b=20;
-    thread t1(func1,a,b);
-    thread t2(func2,a,b);
+    thread t1(func1);
+    thread t2(func2);
     t1.join();
     t2.join();
 }
