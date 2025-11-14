@@ -19,7 +19,9 @@ void safe_lock1(){
 
     this_thread::sleep_for(chrono::seconds(1));
     mtxB.unlock();
+    cout<<"Released resource B"<<endl;
     mtxA.unlock();
+    cout<<"Released resource A"<<endl;
 }
 
 void safe_lock2(){
@@ -34,7 +36,9 @@ void safe_lock2(){
 
     this_thread::sleep_for(chrono::seconds(1));
     mtxB.unlock();
+    cout<<"Released resource B"<<endl;
     mtxA.unlock();
+    cout<<"Released resource A"<<endl;
 }
 
 int main(){
