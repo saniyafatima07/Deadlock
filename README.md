@@ -14,11 +14,11 @@ cd Deadlock
 
 ## For deadlock simulation
 ```bash
-g++ simulation.cpp -o simulation -pthread
+g++ deadlock_simulation.cpp -o deadlock_simulation -pthread
 ```
 
 ```bash
-./simulation
+./deadlock_simulation
 ```
 
 ## For deadlock prevention
